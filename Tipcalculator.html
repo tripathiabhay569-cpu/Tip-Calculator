@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tip calculator</title>
+    <style>
+      body{
+        text-align:center;
+        background-color: lightblue;
+      }
+      button{
+        background-color: Orange;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 20px;
+        margin: 10px;
+      }
+      button:hover{
+        background-color: lightpink;
+      }
+      input{
+        border: 2px solid black;
+        border-radius: 10px;
+        padding:10px;
+        font-size: 17px;
+      }
+      p{
+        font-size: 22px;
+        padding: 10px;
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tip calculator</h1>
+    <input id="bill" type="number" placeholder="Type the bill amount">
+    <input id="tip-percentage" type="number" placeholder="Type the tip percentage">
+    <input id="no-of-people" type="number" placeholder="Type No of people"><br>
+    <button id="Calculate">Calculate</button>
+    <p id = "display"></p>
+    <script>
+      let displays = document.getElementById("display")
+      let bills = document.getElementById("bill")
+      let tippercentage = document.getElementById("tip-percentage")
+      let NoOfpeople = document.getElementById("no-of-people")
+      let calculate = document.getElementById("Calculate")
+      calculate.addEventListener("click", function(){
+        let billAmount = parseFloat(bills.value)
+        let tippercent = parseFloat(tippercentage.value)
+        let people = parseFloat(NoOfpeople.value)
+        if(!billAmount || !tippercent || !people || people <= 0){
+          displays.textContent = `Please enter a valid number`
+          displays.style.color = "red"
+          return
+        }
+        let tipAmount = (billAmount * tippercent)/100
+        let Total = billAmount + tipAmount
+        let peoples = Total/people
+        displays.textContent = `Amount pay per person ${peoples.toFixed(2)}`
+      })
+    </script>
+  </body>
+</html>
